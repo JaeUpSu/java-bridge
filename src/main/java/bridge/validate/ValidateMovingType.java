@@ -3,7 +3,7 @@ package bridge.validate;
 import bridge.domain.Moving;
 import bridge.exception.InvalidMovingTypeException;
 
-public class validateMovingType {
+public class ValidateMovingType {
     public static void validate(String inputValue) {
         Moving MovingUp = Moving.UP;
         Moving MovingDown = Moving.DOWN;

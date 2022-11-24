@@ -3,7 +3,7 @@ package bridge.validate;
 import bridge.domain.Range;
 import bridge.exception.InvalidRangeException;
 
-public class validateRange {
+public class ValidateRange {
     public static void validate(Integer size) {
         Range RangeMin = Range.MIN;
         Range RangeMax = Range.MAX;

@@ -3,7 +3,7 @@ package bridge.validate;
 import bridge.domain.GameCommand;
 import bridge.exception.InvalidCommandTypeException;
 
-public class validateCommandType {
+public class ValidateCommandType {
     public static void validate(String inputValue) {
 
         GameCommand commandRetry = GameCommand.RETRY;
