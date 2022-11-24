@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import bridge.exception.InvalidMovingTypeException;
+
 import java.util.Arrays;
 import java.util.function.Predicate;
 
@@ -19,7 +21,7 @@ public enum Moving {
         return Arrays.stream(Moving.values())
                 .filter(moving -> moving.isMatch.test(generate))
                 .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(InvalidMovingTypeException::new);
     }
 
     public String getType() {
