@@ -1,6 +1,10 @@
 package bridge.view;
 
 
+import bridge.validate.ValidateCommandType;
+import bridge.validate.ValidateIsNumber;
+import bridge.validate.ValidateMovingType;
+import bridge.validate.ValidateRange;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -17,8 +21,11 @@ public class InputView {
      */
     public int readBridgeSize() {
         System.out.println(READ_BRIDGE_SIZE_MESSAGE);
-        int inputValue = Integer.valueOf(Console.readLine());
-        return inputValue;
+        String inputValue = Console.readLine();
+        System.out.println(inputValue + "\n");
+        validateBridgeSize(inputValue);
+
+        return Integer.valueOf(inputValue);
     }
 
     /**
@@ -27,6 +34,9 @@ public class InputView {
     public String readMoving() {
         System.out.println(READ_MOVING_MESSAGE);
         String inputValue = Console.readLine();
+        System.out.println(inputValue + "\n");
+        ValidateMovingType.validate(inputValue);
+
         return inputValue;
     }
 
@@ -36,6 +46,14 @@ public class InputView {
     public String readGameCommand() {
         System.out.println(READ_GAME_COMMAND_MESSAGE);
         String inputValue = Console.readLine();
+        System.out.println(inputValue + "\n");
+        ValidateCommandType.validate(inputValue);
+
         return inputValue;
+    }
+
+    private void validateBridgeSize(String inputValue) {
+        ValidateIsNumber.validate(inputValue);
+        ValidateRange.validate(Integer.valueOf(inputValue));
     }
 }
