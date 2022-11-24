@@ -17,7 +17,7 @@ public enum Moving {
         this.isMatch = isMatch;
     }
 
-    public Moving getMoving(int generate) {
+    public static Moving getMoving(int generate) {
         return Arrays.stream(Moving.values())
                 .filter(moving -> moving.isMatch.test(generate))
                 .findAny()
