@@ -14,23 +14,23 @@ public enum MoveAble {
 
     private final String status;
     private final BiPredicate<String, MovingType> isBridgeMatch;
-    private final BiPredicate<String, MovingType> isTypeMatch;
+    private final BiPredicate<String, MovingType> isMoveMatch;
 
-    MoveAble(String status, BiPredicate<String, MovingType> isBridgeMatch, BiPredicate<String, MovingType> isTypeMatch) {
+    MoveAble(String status, BiPredicate<String, MovingType> isBridgeMatch, BiPredicate<String, MovingType> isMoveMatch) {
         this.status = status;
         this.isBridgeMatch = isBridgeMatch;
-        this.isTypeMatch = isTypeMatch;
+        this.isMoveMatch = isMoveMatch;
     }
 
-    public static String getMoveBridgeFilter(String input, MovingType movingType, MovingType correctType) {
+    public static String getMoveBridgeFilter(String input, MovingType bridgeType, MovingType moveAbleType) {
         Stream<MoveAble> moveAbleStream = Arrays.stream(MoveAble.values())
-                .filter(move -> move.isBridgeMatch.test(input, movingType));
+                .filter(move -> move.isBridgeMatch.test(input, bridgeType));
 
-        return getMovingTypeFilter(moveAbleStream, input, correctType);
+        return getMovingTypeFilter(moveAbleStream, input, moveAbleType);
     }
 
-    private static String getMovingTypeFilter(Stream<MoveAble> moves, String input, MovingType correctType) {
-        return moves.filter(move -> move.isTypeMatch.test(input, correctType))
+    private static String getMovingTypeFilter(Stream<MoveAble> moves, String input, MovingType moveAbleType) {
+        return moves.filter(move -> move.isMoveMatch.test(input, moveAbleType))
                 .findAny()
                 .orElse(EMPTY)
                 .getStatus();
