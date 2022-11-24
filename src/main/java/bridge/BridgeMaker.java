@@ -1,6 +1,6 @@
 package bridge;
 
-import bridge.domain.Moving;
+import bridge.domain.MovingType;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +31,6 @@ public class BridgeMaker {
     }
 
     private String convertMoving(Integer number) {
-        return Moving.getMoving(number).getType();
+        return MovingType.getMoving(number).getType();
     }
 }

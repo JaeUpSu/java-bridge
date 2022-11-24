@@ -12,8 +12,8 @@ public class MovingTest {
     @DisplayName("generate 를 Moving 으로 변환하는 메서드 확인")
     @MethodSource("getCorrectValue")
     @ParameterizedTest
-    void checkCorrectMovingTest(Integer generate, Moving moving) {
-        if (Moving.getMoving(generate).equals(moving)) {
+    void checkCorrectMovingTest(Integer generate, MovingType moving) {
+        if (MovingType.getMoving(generate).equals(moving)) {
             return;
         }
 
@@ -22,8 +22,8 @@ public class MovingTest {
 
     static Stream<Arguments> getCorrectValue() {
         return Stream.of(
-                Arguments.of(1, Moving.UP),
-                Arguments.of(0, Moving.DOWN)
+                Arguments.of(1, MovingType.UP),
+                Arguments.of(0, MovingType.DOWN)
         );
     }
 }
