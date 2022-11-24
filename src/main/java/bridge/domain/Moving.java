@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 public enum Moving {
@@ -12,6 +13,13 @@ public enum Moving {
     Moving(String type, Predicate<Integer> isMatch) {
         this.type = type;
         this.isMatch = isMatch;
+    }
+
+    public Moving getMoving(int generate) {
+        return Arrays.stream(Moving.values())
+                .filter(moving -> moving.isMatch.test(generate))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public String getType() {
