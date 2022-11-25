@@ -26,12 +26,12 @@ public class MoveAbleTest {
         return Stream.of(
                 // 입력값, MovingType 변환 값, 컴퓨터 Bridge 방향, 결과
                 Arguments.of("U", MovingType.UP, MovingType.UP, "O"),
-                Arguments.of("U", MovingType.UP, MovingType.DOWN, " "),
+                Arguments.of("U", MovingType.UP, MovingType.DOWN, "X"),
                 Arguments.of("U", MovingType.DOWN, MovingType.UP, " "),
-                Arguments.of("U", MovingType.DOWN, MovingType.DOWN, "X"),
-                Arguments.of("D", MovingType.UP, MovingType.UP, "X"),
+                Arguments.of("U", MovingType.DOWN, MovingType.DOWN, " "),
+                Arguments.of("D", MovingType.UP, MovingType.UP, " "),
                 Arguments.of("D", MovingType.UP, MovingType.DOWN, " "),
-                Arguments.of("D", MovingType.DOWN, MovingType.UP, " "),
+                Arguments.of("D", MovingType.DOWN, MovingType.UP, "X"),
                 Arguments.of("D", MovingType.DOWN, MovingType.DOWN, "O")
         );
     }
