@@ -23,4 +23,16 @@ public class BridgeGameController {
         Bridge bridge = new Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()));
         bridgeGame.setBridge(bridge);
     }
+
+    private void play() {
+        bridgeGame.move(inputView.readMoving());
+        outputView.printMap(bridgeGame.getPrintingBridge());
+        checkRetry();
+    }
+
+    private void checkRetry() {
+        if (bridgeGame.isFail()) {
+            bridgeGame.updateRetry(inputView.readGameCommand());
+        }
+    }
 }
