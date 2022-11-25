@@ -18,7 +18,7 @@ public class PrintingBridge {
         downBridge.add(MoveAble.getMoveBridgeFilter(userMove, MovingType.DOWN, computerMoveType));
     }
 
-    public List<String> getBridgeMap() {
-        return List.of(upBridge.toString(), downBridge.toString());
+    public String getBridgeMap() {
+        return upBridge.toString() + "\n" +  downBridge.toString();
     }
 }
