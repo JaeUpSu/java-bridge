@@ -24,6 +24,13 @@ public enum MovingType {
                 .orElseThrow(InvalidMovingTypeException::new);
     }
 
+    public static MovingType getMoving(String move) {
+        return Arrays.stream(MovingType.values())
+                .filter(moving -> moving.getType().equals(move))
+                .findAny()
+                .orElseThrow(InvalidMovingTypeException::new);
+    }
+
     public String getType() {
         return type;
     }
