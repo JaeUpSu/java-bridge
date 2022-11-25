@@ -20,7 +20,6 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        System.out.println(READ_BRIDGE_SIZE_MESSAGE);
         String inputValue = Console.readLine();
         System.out.println(inputValue + "\n");
         validateBridgeSize(inputValue);
@@ -28,16 +27,22 @@ public class InputView {
         return Integer.valueOf(inputValue);
     }
 
+    public void printBridgeSizeMessage() {
+        System.out.println(READ_BRIDGE_SIZE_MESSAGE);
+    }
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        System.out.println(READ_MOVING_MESSAGE);
         String inputValue = Console.readLine();
         System.out.println(inputValue + "\n");
         ValidateMovingType.validate(inputValue);
 
         return inputValue;
+    }
+
+    public void printMovingMessage() {
+        System.out.println(READ_MOVING_MESSAGE);
     }
 
     /**
@@ -50,6 +55,10 @@ public class InputView {
         ValidateCommandType.validate(inputValue);
 
         return inputValue;
+    }
+
+    public void printCommandMessage() {
+        System.out.println(READ_GAME_COMMAND_MESSAGE);
     }
 
     private void validateBridgeSize(String inputValue) {
