@@ -55,6 +55,17 @@ public class BridgeGame {
     public void move(String move) {
         printingBridge.addMoveBridge(move, MovingType.getMoving(bridge.get(position)));
         position++;
+        checkGame();
+    }
+
+    private void checkGame() {
+        if (position.equals(bridge.size())) {
+            result = Result.SUCCESS;
+        }
+
+        if (!printingBridge.isContinueGame()) {
+            result = Result.FAIL;
+        }
     }
 
     /**
