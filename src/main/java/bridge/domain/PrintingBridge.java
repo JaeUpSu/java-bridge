@@ -28,7 +28,7 @@ public class PrintingBridge {
     }
 
     public String getBridgeMap() {
-        return upBridge.toString() + "\n" + downBridge.toString();
+        return upBridge.toString() + "\n" + downBridge.toString() + "\n";
     }
 
     private void checkContinueGame(String nextUpState, String nextDownState) {
