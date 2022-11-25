@@ -20,11 +20,15 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public int readBridgeSize() {
-        String inputValue = Console.readLine();
-        System.out.println(inputValue + "\n");
-        validateBridgeSize(inputValue);
-
-        return Integer.valueOf(inputValue);
+        try {
+            String inputValue = Console.readLine();
+            System.out.println(inputValue + "\n");
+            validateBridgeSize(inputValue);
+            return Integer.valueOf(inputValue);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readBridgeSize();
+        }
     }
 
     public void printBridgeSizeMessage() {
@@ -34,11 +38,16 @@ public class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     public String readMoving() {
-        String inputValue = Console.readLine();
-        System.out.println(inputValue + "\n");
-        ValidateMovingType.validate(inputValue);
+        try {
+            String inputValue = Console.readLine();
+            System.out.println(inputValue + "\n");
+            ValidateMovingType.validate(inputValue);
 
-        return inputValue;
+            return inputValue;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
     }
 
     public void printMovingMessage() {
@@ -49,12 +58,16 @@ public class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public String readGameCommand() {
-        System.out.println(READ_GAME_COMMAND_MESSAGE);
-        String inputValue = Console.readLine();
-        System.out.println(inputValue + "\n");
-        ValidateCommandType.validate(inputValue);
+        try {
+            String inputValue = Console.readLine();
+            System.out.println(inputValue + "\n");
+            ValidateCommandType.validate(inputValue);
 
-        return inputValue;
+            return inputValue;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return readGameCommand();
+        }
     }
 
     public void printCommandMessage() {
