@@ -35,7 +35,7 @@ public enum MoveAble {
                 .orElse(EMPTY)
                 .getStatus();
     }
-    private String getStatus() {
+    public String getStatus() {
         return status;
     }
 }
