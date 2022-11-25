@@ -10,7 +10,7 @@ public class Bridge {
         this.bridge = bridge;
     }
 
-    public String get(int index) {
+    public String get(Integer index) {
         return bridge.get(index);
     }
 
