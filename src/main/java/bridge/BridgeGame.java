@@ -18,7 +18,7 @@ public class BridgeGame {
         this.printingBridge = new PrintingBridge();
         this.position = 0;
         this.tryCount = 1;
-        this.result = Result.FAIL;
+        this.result = Result.CONTINUE;
     }
 
     public void setBridge(Bridge bridge) {
