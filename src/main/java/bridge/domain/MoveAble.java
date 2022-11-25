@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 public enum MoveAble {
     ALLOWANCE("O", (input, moving) -> input.equals(moving.getType())
             , (input, movingType) -> input.equals(movingType.getType())),
-    DIS_ALLOWANCE("X", (input, moving) -> !input.equals(moving.getType())
+    DIS_ALLOWANCE("X", (input, moving) -> input.equals(moving.getType())
             , (input, movingType) -> !input.equals(movingType.getType())),
-    EMPTY(" ", (input, moving) -> input.equals(moving.getType())
+    EMPTY(" ", (input, moving) -> !input.equals(moving.getType())
             , (input, movingType) -> true);
 
     private final String status;
