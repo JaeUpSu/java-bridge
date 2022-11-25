@@ -1,9 +1,41 @@
 package bridge;
 
+import bridge.domain.Bridge;
+import bridge.domain.PrintingBridge;
+import bridge.domain.Result;
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    Bridge bridge;
+    PrintingBridge printingBridge;
+    Integer position;
+    Integer tryCount;
+    Result result;
+
+    public BridgeGame() {
+        this.printingBridge = new PrintingBridge();
+        this.position = 0;
+        this.tryCount = 1;
+        this.result = Result.FAIL;
+    }
+
+    public void setBridge(Bridge bridge) {
+        this.bridge = bridge;
+    }
+
+    public String getPrintingBridge() {
+        return printingBridge.getBridgeMap();
+    }
+
+    public Integer getTryCount() {
+        return tryCount;
+    }
+
+    public String getResultStatus() {
+        return result.getStatus();
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
