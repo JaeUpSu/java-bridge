@@ -79,7 +79,7 @@
 
 #### 도메인
 
-- [ ] MoveStatus 성공/실패 Enum
+- [x] MoveStatus 가능/불가능 표현하는 Enum
 - [ ] Round 각 라운드를 표현하는 Class
 - [ ] MoveResult 각 단계별 성공 여부 표현 Class
 - [x] Direction 위 아래 방향을 표현하는 Enum
