@@ -1,7 +1,10 @@
 package bridge.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Round {
 
@@ -26,6 +29,12 @@ public class Round {
     public static Round valueOf(Integer number) {
         validate(number);
         return CACHE.get(number);
+    }
+
+    public static List<Round> order() {
+        return IntStream.rangeClosed(MINIMUM_ROUND, MAXIMUM_ROUND)
+                .mapToObj(CACHE::get)
+                .collect(Collectors.toList());
     }
 
     private static void validate(Integer number) {
