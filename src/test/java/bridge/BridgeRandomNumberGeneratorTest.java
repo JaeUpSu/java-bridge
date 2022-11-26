@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class BridgeRandomNumberGeneratorTest {
 
+    // @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
     // 클래스에 해당 애노테이션을 붙이면 @Test 메소드 이름에 _로 표시한 모든 부분은 space로 처리된다.
 
     @Test
