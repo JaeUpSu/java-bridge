@@ -81,7 +81,6 @@
 
 - [x] MoveStatus 가능/불가능 표현하는 Enum
 - [ ] Round 각 라운드를 표현하는 Class
-- [ ] MoveResult 각 단계별 성공 여부 표현 Class
 - [x] Direction 위 아래 방향을 표현하는 Enum
   - [x] toInitialLetter : 0과 1사이의 값을 받아 D와 U중 하나로 반환
   - [x] toEnum : U와 D중 하나를 받아 해당하는 Direction 인스턴스 반환 
