@@ -89,6 +89,7 @@
 - [ ] Player 사용자 Class
 - [ ] BridgeGame 다리 건너기 게임을 관리하는 Class
 - [ ] BridgeMaker 다리를 생성하는 Class
+  - [x] makeBridge -> 다리의 길이를 입력받아 U와 D로 표현된 다리를 반환  
 - [ ] BridgeGameStatus 게임 진행 여부 Enum
 - [ ] Trial 시도 횟수 표현하는 Class
 - [ ] BridgeGameResult 게임 결과 표현 Class
