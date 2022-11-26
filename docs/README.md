@@ -80,7 +80,7 @@
 #### 도메인
 
 - [x] MoveStatus 가능/불가능 표현하는 Enum
-- [ ] Round 각 라운드를 표현하는 Class
+- [x] Round 각 라운드를 표현하는 Class
 - [x] Direction 위 아래 방향을 표현하는 Enum
   - [x] toInitialLetter : 0과 1사이의 값을 받아 D와 U중 하나로 반환
   - [x] toEnum : U와 D중 하나를 받아 해당하는 Direction 인스턴스 반환 
@@ -90,5 +90,5 @@
 - [ ] BridgeMaker 다리를 생성하는 Class
   - [x] makeBridge -> 다리의 길이를 입력받아 U와 D로 표현된 다리를 반환  
 - [ ] BridgeGameStatus 게임 진행 여부 Enum
-- [ ] Trial 시도 횟수 표현하는 Class
+- [x] GamePlayCount 시도 횟수 표현하는 Class
 - [ ] BridgeGameResult 게임 결과 표현 Class
