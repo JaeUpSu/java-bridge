@@ -10,4 +10,7 @@ public enum MoveStatus {
         this.status = status;
     }
 
+    public String get() {
+        return status;
+    }
 }

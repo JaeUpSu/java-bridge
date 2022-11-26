@@ -80,6 +80,7 @@
 #### 도메인
 
 - [x] MoveStatus 가능/불가능 표현하는 Enum
+  - [x] get -> status 반환 
 - [x] Round 각 라운드를 표현하는 Class
 - [x] Direction 위 아래 방향을 표현하는 Enum
   - [x] toInitialLetter : 0과 1사이의 값을 받아 D와 U중 하나로 반환
