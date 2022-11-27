@@ -32,4 +32,18 @@ public class BridgeGameTest {
         Assertions.assertThat(status).isEqualTo(UNABLE);
     }
 
+    @Test
+    void isPlayable_메서드는_진행_가능한_라운드를_입력받는_경우_true_를_반환() {
+        Boolean result = bridgeGame.isPlayable(new Round(2));
+
+        Assertions.assertThat(result).isTrue();
+    }
+
+    @Test
+    void isPlayable_메서드는_진행_불가능한_라운드를_입력받는_경우_false_를_반환_반환() {
+        Boolean result = bridgeGame.isPlayable(new Round(4));
+
+        Assertions.assertThat(result).isFalse();
+    }
+
 }

@@ -10,6 +10,10 @@ public class BridgeGame {
     public BridgeGame(Bridge bridge) {
         this.bridge = bridge;
     }
+
+    public boolean isPlayable(Round round) {
+        return bridge.isValidRound(round);
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * <p>
