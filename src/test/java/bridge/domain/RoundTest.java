@@ -28,22 +28,33 @@ public class RoundTest {
 
     @ParameterizedTest
     @ValueSource(ints = {MINIMUM_ROUND - 1, MAXIMUM_ROUND + 1, 9999})
-    void valueOf_메서드는_범위밖의_값을_입력하면_예외처리(int number) {
-        assertThatThrownBy(() -> Round.valueOf(number))
+    void 생성자는_범위밖의_값을_입력하면_예외처리(int number) {
+        assertThatThrownBy(() -> new Round(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("허용된 범위를 벗어났습니다.");
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {MINIMUM_ROUND, MAXIMUM_ROUND})
-    void valueOf_메서드는_범위내의_값을_입력하면_Round_인스턴스를_반환(int number) {
-        assertThat(Round.valueOf(number)).isInstanceOf(Round.class);
+    @Test
+    void nextRound_메서드를_사용해_허용된_범위를_넘어간다면_예외처리() {
+        Round round = new Round(MAXIMUM_ROUND);
+
+        assertThatThrownBy(round::nextRound)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("허용된 범위를 벗어났습니다.");
+    }
+
+    @Test
+    void nextRound_메서드를_사용해_라운드_1_증가() {
+        Round round = new Round(1);
+        round.nextRound();
+
+        assertThat(round).isEqualTo(new Round(2));
     }
 
     @Test
     void order_메서드는_Round_오름차순하여_반환() {
         List<Round> rounds = IntStream.rangeClosed(MINIMUM_ROUND, MAXIMUM_ROUND)
-                .mapToObj(Round::valueOf)
+                .mapToObj(Round::new)
                 .collect(Collectors.toList());
 
         assertThat(Round.order()).hasSameElementsAs(rounds);

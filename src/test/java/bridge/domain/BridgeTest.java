@@ -49,7 +49,7 @@ public class BridgeTest {
     void check_메서드는_허용되지_않은_다리의_위치를_입력받으면_예외처리한다() {
         Bridge answerBridge = new Bridge(List.of("U", "D", "U"));
 
-        assertThatThrownBy(() -> answerBridge.check(Round.valueOf(4), Direction.UP))
+        assertThatThrownBy(() -> answerBridge.check(new Round(4), Direction.UP))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력값이 다리의 범위를 벗어났습니다.");
     }
@@ -58,7 +58,7 @@ public class BridgeTest {
     void check_메서드는_정답인_다리의_위치를_입력받으면_ABLE_을_반환한다() {
         Bridge answerBridge = new Bridge(List.of("U", "D", "U"));
 
-        MoveStatus status = answerBridge.check(Round.valueOf(1), Direction.UP);
+        MoveStatus status = answerBridge.check(new Round(1), Direction.UP);
 
         assertThat(status).isEqualTo(MoveStatus.ABLE);
     }
@@ -67,7 +67,7 @@ public class BridgeTest {
     void check_메서드는_오답인_다리의_위치를_입력받으면_UNABLE_을_반환한다() {
         Bridge answerBridge = new Bridge(List.of("U", "D", "U"));
 
-        MoveStatus status = answerBridge.check(Round.valueOf(1), Direction.DOWN);
+        MoveStatus status = answerBridge.check(new Round(1), Direction.DOWN);
 
         assertThat(status).isEqualTo(MoveStatus.UNABLE);
     }
