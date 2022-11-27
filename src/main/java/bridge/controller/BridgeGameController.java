@@ -15,4 +15,13 @@ public class BridgeGameController {
     public void run() {
         outputView.printGameStart();
     }
+
+    private int readBridgeSize() {
+        try {
+            return inputView.readBridgeSize();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return readBridgeSize();
+        }
+    }
 }
