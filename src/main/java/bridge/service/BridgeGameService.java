@@ -24,22 +24,30 @@ public class BridgeGameService {
     }
 
     public List<List<MoveStatus>> play(Player player, String move) {
-        validate();
-        Direction direction = Direction.toEnum(move);
-        player.move(bridgeGame, direction);
-        return player.getBridgeGameResult();
-    }
 
-    private void validate() {
         if (!isPlayable()) {
             throw new IllegalArgumentException(INVALID_GAME_STATE_MESSAGE);
         }
+
+        player.move(bridgeGame, Direction.toEnum(move));
+        return player.getBridgeGameResult();
     }
 
     public boolean isPlayable() {
-        if (Objects.isNull(bridgeGame)) {
+        if (!isInitialized()) {
             return false;
         }
         return bridgeGame.isPlayable();
+    }
+
+    private boolean isInitialized() {
+        return !Objects.isNull(bridgeGame);
+    }
+
+    public void retry(String command) {
+        if (!isInitialized()) {
+            throw new IllegalArgumentException(INVALID_GAME_STATE_MESSAGE);
+        }
+        bridgeGame.retry(BridgeGameStatus.getEnum(command));
     }
 }

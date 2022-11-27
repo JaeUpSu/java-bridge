@@ -8,15 +8,20 @@ import bridge.domain.Player;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayName("BridgeGameService 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class BridgeGameServiceTest {
 
-    private final BridgeNumberGenerator bridgeNumberGenerator = new BridgeRandomNumberGenerator();
+    private final BridgeNumberGenerator bridgeNumberGenerator = new TestBridgeNumberGenerator(Lists.newArrayList(0,0,1));
     private final BridgeMaker bridgeMaker = new BridgeMaker(bridgeNumberGenerator);
     private BridgeGameService bridgeGameService;
 
@@ -30,23 +35,21 @@ public class BridgeGameServiceTest {
         int givenSize = 3;
 
         bridgeGameService.initializeBridgeGame(givenSize);
-        Assertions.assertThat(bridgeGameService.isPlayable()).isTrue();
+        assertThat(bridgeGameService.isPlayable()).isTrue();
     }
 
     @Test
     void play_메서드는_사용자와_방향을_입력받아_다리를_건너_결과_반환() {
-        BridgeMaker bridgeMaker = new BridgeMaker(new TestBridgeNumberGenerator(Lists.newArrayList(0,0,1)));
-        BridgeGameService bridgeGameService = new BridgeGameService(bridgeMaker);
         bridgeGameService.initializeBridgeGame(3);
 
         List<List<MoveStatus>> result = bridgeGameService.play(new Player(), "U");
 
-        Assertions.assertThat(result.get(0)).isEqualTo(List.of(MoveStatus.UNABLE));
+        assertThat(result.get(0)).isEqualTo(List.of(MoveStatus.UNABLE));
     }
 
     @Test
     void play_메서드는_다리가_준비되지_않는_경우_예외처리() {
-        Assertions.assertThatThrownBy(() -> bridgeGameService.play(new Player(), "U"))
+        assertThatThrownBy(() -> bridgeGameService.play(new Player(), "U"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("게임을 진행할 수 없습니다.");
     }
@@ -54,7 +57,25 @@ public class BridgeGameServiceTest {
     @Test
     void isPlayable_메서드는_다리가_초기화되지_않은_경우_false_반환() {
         boolean result = bridgeGameService.isPlayable();
-        Assertions.assertThat(result).isFalse();
+        assertThat(result).isFalse();
+    }
+
+    @ParameterizedTest(name = "{0}을 입력받으면 재시작여부: {1}")
+    @CsvSource({"R, true", "Q, false"})
+    void retry_메서드는_command_를_입력받아_게임을_재시작_설정을_한다(String command, boolean result) {
+        bridgeGameService.initializeBridgeGame(3);
+        bridgeGameService.play(new Player(), "U");
+
+        bridgeGameService.retry(command);
+
+        assertThat(bridgeGameService.isPlayable()).isEqualTo(result);
+    }
+
+    @Test
+    void retry_메서드는_다리가_준비되지_않은경우_IllegalStateException을_던진다() {
+        assertThatThrownBy(() -> bridgeGameService.retry("R"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("게임을 진행할 수 없습니다.");
     }
 
     static class TestBridgeNumberGenerator implements BridgeNumberGenerator {
