@@ -11,6 +11,7 @@ public class Round {
 
     public static final int MINIMUM_ROUND = 1;
     public static final int MAXIMUM_ROUND = 20;
+    public static final int DIFFERENCE_ROUND = 1;
 
     private static final Map<Integer, Round> CACHE = new HashMap<>();
 
@@ -44,8 +45,8 @@ public class Round {
     }
 
     public Round nextRound() {
-        validate(number + 1);
-        return CACHE.get(number + 1);
+        validate(number + DIFFERENCE_ROUND);
+        return CACHE.get(number + DIFFERENCE_ROUND);
     }
 
     public static Round firstRound() {

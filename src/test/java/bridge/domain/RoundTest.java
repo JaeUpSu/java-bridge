@@ -5,10 +5,8 @@ import static bridge.domain.Round.MINIMUM_ROUND;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Test;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -25,6 +23,21 @@ public class RoundTest {
     // IntStream => 정수형 Stream
     // rangeClosed(min, max) => 범위 적용
     // mapToObj(Class::Method) => 요소 하나하나 클래스 내의 메서드 적용
+
+    @ParameterizedTest
+    @ValueSource(ints = {MINIMUM_ROUND - 1, MAXIMUM_ROUND + 1, -1, 1000})
+    void valueOf_메서드는_범위를_벗어난_값을_입력받으면_예외처리_한다(int round) {
+        Assertions.assertThatThrownBy(() -> Round.valueOf(round))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("허용된 범위를 벗어났습니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {MINIMUM_ROUND, 10, MAXIMUM_ROUND})
+    void valueOf_메서드는_범위내의_값을_입력받으면_정상처리_한다(int round) {
+        Round result = Round.valueOf(round);
+        assertThat(result).isInstanceOf(Round.class);
+    }
 
     @Test
     void nextRound_메서드를_사용해_라운드_1_증가() {
