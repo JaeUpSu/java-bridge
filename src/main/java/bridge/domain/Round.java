@@ -27,6 +27,10 @@ public class Round {
 
     private Integer number;
 
+    public Round() {
+        this(MINIMUM_ROUND);
+    }
+
     public Round(Integer number) {
         validate(number);
         this.number = number;

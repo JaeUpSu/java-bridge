@@ -33,6 +33,10 @@ public class RoundTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("허용된 범위를 벗어났습니다.");
     }
+    @Test
+    void 매개변수_없는_생성자는_라운드_1로_시작(int number) {
+        assertThat(new Round()).isEqualTo(new Round(1));
+    }
 
     @Test
     void nextRound_메서드를_사용해_허용된_범위를_넘어간다면_예외처리() {
