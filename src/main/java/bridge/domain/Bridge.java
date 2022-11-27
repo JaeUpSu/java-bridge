@@ -27,11 +27,22 @@ public class Bridge {
     }
 
     public MoveStatus check(Round round, Direction direction) {
-        validateKeyContain(round);
+        if (!isValidRound(round)) {
+            throw new IllegalArgumentException(INVALID_ROUND_MESSAGE);
+        }
+
+        return checkGameResult(round, direction);
+    }
+
+    private MoveStatus checkGameResult(Round round, Direction direction) {
         if (bridge.get(round) == direction) {
             return MoveStatus.ABLE;
         }
         return MoveStatus.UNABLE;
+    }
+
+    public boolean isValidRound(Round round) {
+        return bridge.containsKey(round);
     }
 
     private void validateKeyContain(Round round) {

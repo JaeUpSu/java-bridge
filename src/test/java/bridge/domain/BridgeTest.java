@@ -71,4 +71,16 @@ public class BridgeTest {
 
         assertThat(status).isEqualTo(MoveStatus.UNABLE);
     }
+
+    @Test
+    void isValidRound_메서드는_진행할_수_없는_라운드의_경우_false_를_반환한다() {
+        Bridge answerBridge = new Bridge(List.of("U", "D", "U"));
+        assertThat(answerBridge.isValidRound(new Round(4))).isFalse();
+    }
+
+    @Test
+    void isValidRound_메서드는_진행할_수_있는_라운드의_경우_true_를_반환한다() {
+        Bridge answerBridge = new Bridge(List.of("U", "D", "U"));
+        assertThat(answerBridge.isValidRound(new Round(1))).isTrue();
+    }
 }
