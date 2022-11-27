@@ -36,6 +36,10 @@ public class Round {
         validate(++number);
     }
 
+    public void reset() {
+        number = MINIMUM_ROUND;
+    }
+
     public static List<Round> getOrder() {
         return ORDER;
     }

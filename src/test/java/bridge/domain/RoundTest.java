@@ -52,6 +52,15 @@ public class RoundTest {
     }
 
     @Test
+    void reset_메서드를_사용해_라운드_1_로_초기화() {
+        Round round = new Round(1);
+        round.nextRound();
+        round.reset();
+
+        assertThat(round).isEqualTo(new Round(1));
+    }
+
+    @Test
     void order_메서드는_Round_오름차순하여_반환() {
         List<Round> rounds = IntStream.rangeClosed(MINIMUM_ROUND, MAXIMUM_ROUND)
                 .mapToObj(Round::new)
