@@ -61,4 +61,20 @@ public class RoundTest {
 
         assertThat(Round.order()).hasSameElementsAs(rounds);
     }
+
+    @Test
+    void orderWithSize_메서드는_size_만큼_Round_오름차순하여_반환() {
+        List<Round> rounds = IntStream.rangeClosed(MINIMUM_ROUND, 5)
+                .mapToObj(Round::valueOf)
+                .collect(Collectors.toList());
+
+        assertThat(Round.orderWithSize(5)).hasSameElementsAs(rounds);
+    }
+
+    @Test
+    void orderWithSize_메서드는_범위를_벗어난_값_입력_예외처리() {
+        assertThatThrownBy(() -> Round.orderWithSize(21))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("허용된 범위를 벗어났습니다.");
+    }
 }

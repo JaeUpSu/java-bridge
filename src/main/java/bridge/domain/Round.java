@@ -34,6 +34,14 @@ public class Round {
                 .collect(Collectors.toList());
     }
 
+    public static List<Round> orderWithSize(int size) {
+        validate(size);
+
+        return IntStream.rangeClosed(MINIMUM_ROUND, size)
+                .mapToObj(Round::valueOf)
+                .collect(Collectors.toList());
+    }
+
     public static Round valueOf(Integer round) {
         validate(round);
         return CACHE.get(round);
