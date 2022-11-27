@@ -13,4 +13,8 @@ public enum MoveStatus {
     public String get() {
         return status;
     }
+
+    public boolean isFail() {
+        return this.equals(UNABLE);
+    }
 }

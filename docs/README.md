@@ -81,6 +81,7 @@
 
 - [x] MoveStatus 가능/불가능 표현하는 Enum
   - [x] get -> status 반환 
+  - [x] isFail -> 실패인지 확인
 - [x] Round 각 라운드를 표현하는 Class
   - [x] order -> Round 오름차순으로 반환
   - [x] reset -> Round 를 1로 초기화
