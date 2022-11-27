@@ -41,9 +41,12 @@ public class PlayerTest {
     void getGameResult_메서드는_BridgeGameResult_의_get_을_호출() {
         BridgeGameResult bridgeGameResult = mock(BridgeGameResult.class);
         Player player = new Player(GamePlayCount.firstGame(), Round.firstRound(), bridgeGameResult);
+        BridgeGame bridgeGame = mock(BridgeGame.class);
+        when(bridgeGame.move(any(), any())).thenReturn(MoveStatus.ABLE);
 
-        player.getBridgeGameResult();
+        player.move(bridgeGame, Direction.UP);
 
-        verify(bridgeGameResult, only()).getResult();
+        verify(bridgeGame, only()).move(any(Round.class), eq(Direction.UP));
+        verify(bridgeGameResult, only()).add(any(Round.class), any(MoveStatus.class), any(Direction.class));
     }
 }
