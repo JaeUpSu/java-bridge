@@ -1,5 +1,7 @@
 package bridge.view;
 
+import java.util.List;
+
 public class InputValidator {
 
     // validator는 어떤 상황일 때 분리하는 것이 좋은건가요?? 기준 같은 것이나 분리한 이유
@@ -7,12 +9,20 @@ public class InputValidator {
 
     private static final int VALID_BRIDGE_SIZE_LOWER_ROUND = 3;
     private static final int VALID_BRIDGE_SIZE_UPPER_ROUND = 20;
+    private static final List<String> VALID_MOVING = List.of("U", "D");
     private static final String INVALID_NUMBER_FORMAT_MESSAGE = "올바르지 않은 숫자 형식입니다.";
     private static final String INVALID_BRIDGE_RANGE_MESSAGE = "다리의 길이는 3에서 20 사이의 숫자여야 합니다.";
+    private static final String INVALID_MOVING_MESSAGE = "이동 방향은 위: U, 아래:D 중 하나여야 합니다.";
 
     public void validateBridgeSize(String inputSize) {
         Integer size = toInteger(inputSize);
         validateBridgeSizeRange(size);
+    }
+
+    public void validateMoving(String inputMoving) {
+        if (!VALID_MOVING.contains(inputMoving)) {
+            throw new IllegalArgumentException(INVALID_MOVING_MESSAGE);
+        }
     }
 
     private Integer toInteger(String inputSize) {

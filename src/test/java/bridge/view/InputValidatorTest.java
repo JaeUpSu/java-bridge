@@ -36,4 +36,19 @@ public class InputValidatorTest {
     }
 
 
+    @ParameterizedTest
+    @ValueSource(strings = {"u", "1", "위", "", " U"})
+    void validateMoving_메서드는_허용_외의_값을_입력하면_예외처리한다(String input) {
+        Assertions.assertThatThrownBy(() -> inputValidator.validateMoving(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이동 방향은 위: U, 아래:D 중 하나여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"U", "D"})
+    void validateMoving_메서드는_허용하는_값을_입력하면_정상처리한다(String input) {
+        inputValidator.validateMoving(input);
+    }
+
+
 }
