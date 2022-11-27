@@ -2,7 +2,8 @@ package bridge.domain;
 
 public enum MoveStatus {
     ABLE("O"),
-    UNABLE("X");
+    UNABLE("X"),
+    NOT_MOVE(" ");
 
     private final String status;
 
