@@ -108,8 +108,8 @@
 - [x] BridgeGameController 요청 처리
 - [x] InputView 입력 처리
   - [ ] readBridgeSize -> 다리길이 입력
-- [ ] OutputView 출력 처리
-  - [ ] printGameStart -> 게임 시작 메시지 출력
-  - [ ] printError -> 에러 출력
+- [x] OutputView 출력 처리
+  - [x] printGameStart -> 게임 시작 메시지 출력
+  - [x] printError -> 에러 출력
 - [ ] InputValidator 입력 검증
   - [ ] validateBridgeSize -> 다리길이 검증 
