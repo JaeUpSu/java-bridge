@@ -1,11 +1,14 @@
 package bridge.view;
 
+import java.text.MessageFormat;
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 public class OutputView {
 
     private static final String GAME_START_MESSAGE = "\n다리 건너기 게임을 시작합니다.";
+    private static final String ERROR_MESSAGE_FORMAT = "\n[ERROR] {0}";
 
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -25,5 +28,9 @@ public class OutputView {
 
     public void printGameStart() {
         System.out.println(GAME_START_MESSAGE);
+    }
+
+    public void printError(String message) {
+        System.out.println(MessageFormat.format(ERROR_MESSAGE_FORMAT, message));
     }
 }
