@@ -90,6 +90,9 @@
 - [x] Bridge 다리를 표현하는 모델 Class
   - [x] check -> 라운드와 방향을 입력받아 MoveResult 반환 
 - [x] Player 사용자 Class
+  - [x] move -> 다리 건너기
+  - [x] reset -> 해당 게임 리셋
+  - [x] getGameResult -> 게임 결과 확인
 - [x] BridgeGame 다리 건너기 게임을 관리하는 Class
   - [x] move -> 움직이는 방향에 대한 결과 확인 
 - [x] BridgeMaker 다리를 생성하는 Class
