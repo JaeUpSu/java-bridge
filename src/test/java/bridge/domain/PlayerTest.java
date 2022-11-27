@@ -44,6 +44,6 @@ public class PlayerTest {
 
         player.getBridgeGameResult();
 
-        verify(bridgeGameResult, only()).get();
+        verify(bridgeGameResult, only()).getResult();
     }
 }
