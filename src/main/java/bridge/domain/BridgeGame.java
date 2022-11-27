@@ -6,9 +6,15 @@ package bridge.domain;
 public class BridgeGame {
 
     private final Bridge bridge;
+    private BridgeGameStatus bridgeGameStatus;
 
     public BridgeGame(Bridge bridge) {
+        this(bridge, BridgeGameStatus.gameStart());
+    }
+
+    public BridgeGame(Bridge bridge, BridgeGameStatus bridgeGameStatus) {
         this.bridge = bridge;
+        this.bridgeGameStatus = bridgeGameStatus;
     }
 
     public boolean isPlayable(Round round) {
@@ -20,7 +26,15 @@ public class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public MoveStatus move(Round round, Direction direction) {
-        return bridge.check(round, direction);
+        MoveStatus status = bridge.check(round, direction);
+        checkGameOver(round, status);
+        return status;
+    }
+
+    private void checkGameOver(Round round, MoveStatus status) {
+        if (bridge.isLastRound(round) || status.isFail()) {
+            bridgeGameStatus = BridgeGameStatus.QUIT;
+        }
     }
 
     /**
@@ -28,6 +42,11 @@ public class BridgeGame {
      * <p>
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void retry() {
+    public void retry(BridgeGameStatus bridgeGameStatus) {
+        this.bridgeGameStatus = bridgeGameStatus;
+    }
+
+    public boolean isPlayable() {
+        return bridgeGameStatus.isPlayable();
     }
 }

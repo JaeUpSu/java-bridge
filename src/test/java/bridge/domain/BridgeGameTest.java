@@ -16,10 +16,9 @@ import static bridge.domain.MoveStatus.UNABLE;
 public class BridgeGameTest {
 
     private final Bridge bridge = new Bridge(List.of("U", "D", "U"));
-    private final BridgeGame bridgeGame = new BridgeGame(bridge);
-
     @Test
     void move_메서드는_라운드와_방향을_입력받아_정답인_경우_ABLE_를_반환() {
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         MoveStatus status = bridgeGame.move(Round.valueOf(1), Direction.UP);
 
         Assertions.assertThat(status).isEqualTo(ABLE);
@@ -27,23 +26,24 @@ public class BridgeGameTest {
 
     @Test
     void move_메서드는_라운드와_방향을_입력받아_오답인_경우_UNABLE_를_반환() {
+        BridgeGame bridgeGame = new BridgeGame(bridge);
         MoveStatus status = bridgeGame.move(Round.valueOf(2), Direction.UP);
 
         Assertions.assertThat(status).isEqualTo(UNABLE);
     }
 
     @Test
-    void isPlayable_메서드는_진행_가능한_라운드를_입력받는_경우_true_를_반환() {
-        Boolean result = bridgeGame.isPlayable(Round.valueOf(2));
+    void retry_메서드는_PLAY_를_입력받는_경우_게임을_진행() {
+        BridgeGame bridgeGame = new BridgeGame(bridge, BridgeGameStatus.QUIT);
 
-        Assertions.assertThat(result).isTrue();
+        bridgeGame.retry(BridgeGameStatus.PLAY);
+        Assertions.assertThat(bridgeGame.isPlayable()).isTrue();
     }
 
     @Test
     void isPlayable_메서드는_진행_불가능한_라운드를_입력받는_경우_false_를_반환_반환() {
-        Boolean result = bridgeGame.isPlayable(Round.valueOf(4));
-
-        Assertions.assertThat(result).isFalse();
+        BridgeGame bridgeGame = new BridgeGame(bridge, BridgeGameStatus.QUIT);
+        Assertions.assertThat(bridgeGame.isPlayable()).isFalse();
     }
 
 }
