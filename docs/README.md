@@ -89,7 +89,7 @@
   - [x] toEnum : U와 D중 하나를 받아 해당하는 Direction 인스턴스 반환 
 - [x] Bridge 다리를 표현하는 모델 Class
   - [x] check -> 라운드와 방향을 입력받아 MoveResult 반환 
-- [ ] Player 사용자 Class
+- [x] Player 사용자 Class
 - [ ] BridgeGame 다리 건너기 게임을 관리하는 Class
 - [x] BridgeMaker 다리를 생성하는 Class
   - [x] makeBridge -> 다리의 길이를 입력받아 U와 D로 표현된 다리를 반환  
