@@ -99,3 +99,13 @@
   - [x] add -> 라운드와 게임 결과를 입력받아 추가
   - [x] get -> 1라운드부터 게임 결과를 반환
   - [x] reset -> 게임 결과 초기화
+  
+
+---
+
+#### Structure
+
+- [x] BridgeGameController 요청 처리
+- [ ] InputView 입력 처리
+- [ ] OutputView 출력 처리
+- [ ] InputValidator 입력 검증
