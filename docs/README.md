@@ -109,3 +109,4 @@
 - [ ] InputView 입력 처리
 - [ ] OutputView 출력 처리
 - [ ] InputValidator 입력 검증
+  - [ ] validateBridgeSize -> 다리길이 검증 
