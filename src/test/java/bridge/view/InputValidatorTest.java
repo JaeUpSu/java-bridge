@@ -50,5 +50,19 @@ public class InputValidatorTest {
         inputValidator.validateMoving(input);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"r", "1", "위", "", " R"})
+    void validateCommand_메서드는_허용_외의_값을_입력하면_예외처리한다(String input) {
+        Assertions.assertThatThrownBy(() -> inputValidator.validateCommand(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("재시도 입력은 재시도: R, 종료:Q 중 하나여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"R", "Q"})
+    void validateCommand_메서드는_허용하는_값을_입력하면_정상처리한다(String input) {
+        inputValidator.validateCommand(input);
+    }
+
 
 }
