@@ -40,7 +40,7 @@ public class PlayerTest {
     @Test
     void getGameResult_메서드는_BridgeGameResult_의_get_을_호출() {
         BridgeGameResult bridgeGameResult = mock(BridgeGameResult.class);
-        Player player = new Player(GamePlayCount.firstGame(), new Round(), bridgeGameResult);
+        Player player = new Player(GamePlayCount.firstGame(), Round.firstRound(), bridgeGameResult);
 
         player.getBridgeGameResult();
 

@@ -6,10 +6,10 @@ public class Player {
 
     private final GamePlayCount gamePlayCount;
     private final BridgeGameResult bridgeGameResult;
-    private final Round round;
+    private Round round;
 
     public Player() {
-        this(GamePlayCount.firstGame(), new Round(), new BridgeGameResult());
+        this(GamePlayCount.firstGame(), Round.firstRound(), new BridgeGameResult());
     }
 
     public Player(GamePlayCount gamePlayCount, Round round, BridgeGameResult bridgeGameResult) {
