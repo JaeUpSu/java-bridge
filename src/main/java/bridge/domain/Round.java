@@ -37,7 +37,7 @@ public class Round {
     }
 
     public void nextRound() {
-        validate(++number);
+        number++;
     }
 
     public void reset() {
