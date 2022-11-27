@@ -89,7 +89,7 @@
   - [x] toEnum : U와 D중 하나를 받아 해당하는 Direction 인스턴스 반환 
 - [x] Bridge 다리를 표현하는 모델 Class
   - [x] check -> 라운드와 방향을 입력받아 MoveResult 반환 
-  - [x] isValidRound -> 진행 가능한 라운드인지 확인
+  - [x] isLastRound -> 마지막 라운드인지 확인
 - [x] Player 사용자 Class
   - [x] move -> 다리 건너기
   - [x] reset -> 해당 게임 리셋

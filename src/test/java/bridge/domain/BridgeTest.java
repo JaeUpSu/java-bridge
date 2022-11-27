@@ -67,20 +67,20 @@ public class BridgeTest {
     void check_메서드는_오답인_다리의_위치를_입력받으면_UNABLE_을_반환한다() {
         Bridge answerBridge = new Bridge(List.of("U", "D", "U"));
 
-        MoveStatus status = answerBridge.check(Round.valueOf(4), Direction.DOWN);
+        MoveStatus status = answerBridge.check(Round.valueOf(1), Direction.DOWN);
 
         assertThat(status).isEqualTo(MoveStatus.UNABLE);
     }
 
     @Test
-    void isValidRound_메서드는_진행할_수_없는_라운드의_경우_false_를_반환한다() {
+    void isLastRound_메서드는_진행할_수_없는_라운드의_경우_false_를_반환한다() {
         Bridge answerBridge = new Bridge(List.of("U", "D", "U"));
-        assertThat(answerBridge.isValidRound(Round.valueOf(4))).isFalse();
+        assertThat(answerBridge.isLastRound(Round.valueOf(4))).isFalse();
     }
 
     @Test
-    void isValidRound_메서드는_진행할_수_있는_라운드의_경우_true_를_반환한다() {
+    void isLastRound_메서드는_진행할_수_있는_라운드의_경우_true_를_반환한다() {
         Bridge answerBridge = new Bridge(List.of("U", "D", "U"));
-        assertThat(answerBridge.isValidRound(Round.valueOf(1))).isTrue();
+        assertThat(answerBridge.isLastRound(Round.valueOf(3))).isTrue();
     }
 }

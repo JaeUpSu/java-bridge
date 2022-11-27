@@ -27,28 +27,27 @@ public class Bridge {
     }
 
     public MoveStatus check(Round round, Direction direction) {
-        if (!isValidRound(round)) {
-            throw new IllegalArgumentException(INVALID_ROUND_MESSAGE);
-        }
+        validateRound(round);
 
-        return checkGameResult(round, direction);
-    }
-
-    private MoveStatus checkGameResult(Round round, Direction direction) {
         if (bridge.get(round) == direction) {
             return MoveStatus.ABLE;
         }
         return MoveStatus.UNABLE;
     }
 
+    private void validateRound(Round round) {
+        if (!bridge.containsKey(round)) {
+            throw new IllegalArgumentException(INVALID_ROUND_MESSAGE);
+        }
+    }
+
     public boolean isValidRound(Round round) {
         return bridge.containsKey(round);
     }
 
-    private void validateKeyContain(Round round) {
-        if (!bridge.containsKey(round)) {
-            throw new IllegalArgumentException(INVALID_ROUND_MESSAGE);
-        }
+    public boolean isLastRound(Round round) {
+        Round lastRound = Round.valueOf(bridge.size());
+        return lastRound.equals(round);
     }
 
     private Map<Round, Direction> toBridge(List<String> bridge) {
