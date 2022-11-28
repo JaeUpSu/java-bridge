@@ -2,6 +2,7 @@ package bridge.controller;
 
 import bridge.domain.MoveStatus;
 import bridge.domain.Player;
+import bridge.dto.GameMoveDto;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
@@ -27,8 +28,8 @@ public class BridgeGameController {
 
         while (bridgeGameService.isPlayable()) {
             String move = readMoving();
-            List<List<MoveStatus>> result = bridgeGameService.play(player, move);
-            outputView.printMap(result);
+            GameMoveDto gameMoveDto = bridgeGameService.play(player, move);
+            outputView.printMap(gameMoveDto);
 
             if (!bridgeGameService.isPlayable()) {
                 String command = readGameCommand();

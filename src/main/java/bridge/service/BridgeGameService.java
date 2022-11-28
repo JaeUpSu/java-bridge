@@ -2,6 +2,7 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.domain.*;
+import bridge.dto.GameMoveDto;
 
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +23,7 @@ public class BridgeGameService {
         this.bridgeGame = new BridgeGame(answerBridge);
     }
 
-    public List<List<MoveStatus>> play(Player player, String move) {
+    public GameMoveDto play(Player player, String move) {
 
         if (!isPlayable()) {
             throw new IllegalArgumentException(INVALID_GAME_STATE_MESSAGE);

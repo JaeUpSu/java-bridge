@@ -132,3 +132,4 @@
 - [x] InputValidator 입력 검증
   - [x] validateBridgeSize -> 다리길이 검증
   - [x] validateMoving -> 이동방향 검증 
+- [x] GameMoveDto 움직임 결과

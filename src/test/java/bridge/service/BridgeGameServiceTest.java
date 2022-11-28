@@ -4,6 +4,7 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.MoveStatus;
 import bridge.domain.Player;
+import bridge.dto.GameMoveDto;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,9 +40,9 @@ public class BridgeGameServiceTest {
     void play_메서드는_사용자와_방향을_입력받아_다리를_건너_결과_반환() {
         bridgeGameService.initializeBridgeGame(3);
 
-        List<List<MoveStatus>> result = bridgeGameService.play(new Player(), "U");
+        GameMoveDto result = bridgeGameService.play(new Player(), "U");
 
-        assertThat(result.get(0)).isEqualTo(List.of(MoveStatus.UNABLE));
+        assertThat(result.getResult().get(0)).isEqualTo(List.of(MoveStatus.UNABLE));
     }
 
     @Test
