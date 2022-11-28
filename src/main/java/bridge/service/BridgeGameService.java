@@ -9,7 +9,6 @@ import java.util.Objects;
 public class BridgeGameService {
 
     private static final String INVALID_GAME_STATE_MESSAGE = "게임을 진행할 수 없습니다.";
-
     private final BridgeMaker bridgeMaker;
     private BridgeGame bridgeGame;
 

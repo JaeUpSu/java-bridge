@@ -36,7 +36,7 @@ public class BridgeGameTest {
     void retry_메서드는_PLAY_를_입력받는_경우_게임을_진행() {
         BridgeGame bridgeGame = new BridgeGame(bridge, BridgeGameStatus.QUIT);
 
-        bridgeGame.retry(BridgeGameStatus.PLAY);
+        bridgeGame.retry();
         Assertions.assertThat(bridgeGame.isPlayable()).isTrue();
     }
 
