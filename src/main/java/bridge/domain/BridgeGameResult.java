@@ -46,4 +46,13 @@ public class BridgeGameResult {
         }
         return result.get(round);
     }
+
+    public Victory isPassed() {
+        long failCount = Round.orderWithSize(result.size()).stream()
+                .map(result::get)
+                .filter(MoveStatus::isFail)
+                .count();
+
+        return Victory.getEnum(failCount);
+    }
 }

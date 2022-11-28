@@ -10,6 +10,7 @@ import java.util.List;
 
 import static bridge.domain.Direction.*;
 import static bridge.domain.MoveStatus.*;
+import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("BridgeGameResult 클래스")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -20,7 +21,7 @@ public class BridgeGameResultTest {
         BridgeGameResult gameResult = new BridgeGameResult();
         gameResult.add(Round.valueOf(1), ABLE, UP);
 
-        Assertions.assertThat(gameResult.getResult()).containsExactly(List.of(ABLE), List.of(NOT_MOVE));
+        assertThat(gameResult.getResult()).containsExactly(List.of(ABLE), List.of(NOT_MOVE));
     }
 
     @Test
@@ -30,7 +31,7 @@ public class BridgeGameResultTest {
         gameResult.add(Round.valueOf(2), UNABLE, DOWN);
         gameResult.add(Round.valueOf(3), ABLE, UP);
 
-        Assertions.assertThat(gameResult.getResult()).containsExactly(
+        assertThat(gameResult.getResult()).containsExactly(
                 List.of(ABLE, NOT_MOVE, ABLE),
                 List.of(NOT_MOVE, UNABLE, NOT_MOVE)
         );
@@ -41,5 +42,15 @@ public class BridgeGameResultTest {
         BridgeGameResult gameResult = new BridgeGameResult();
         gameResult.add(Round.valueOf(1), ABLE, UP);
         gameResult.reset();
+    }
+
+    @Test
+    void isPassed_메서드는_결과중_FAIL_이_존재하지_않는_경우_VICTORY_를_반환() {
+        BridgeGameResult bridgeGameResult = new BridgeGameResult();
+        bridgeGameResult.add(Round.valueOf(1), ABLE, UP);
+        bridgeGameResult.add(Round.valueOf(2), ABLE, UP);
+        bridgeGameResult.add(Round.valueOf(3), UNABLE, UP);
+
+        assertThat(bridgeGameResult.isPassed()).isEqualTo(Victory.DEFEAT);
     }
 }
