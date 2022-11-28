@@ -47,7 +47,7 @@ public class BridgeGameResult {
         return result.get(round);
     }
 
-    public Victory isPassed() {
+    public Victory checkPassed() {
         long failCount = Round.orderWithSize(result.size()).stream()
                 .map(result::get)
                 .filter(MoveStatus::isFail)

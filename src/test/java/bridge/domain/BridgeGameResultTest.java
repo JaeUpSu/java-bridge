@@ -45,12 +45,21 @@ public class BridgeGameResultTest {
     }
 
     @Test
-    void isPassed_메서드는_결과중_FAIL_이_존재하지_않는_경우_VICTORY_를_반환() {
+    void checkPassed_메서드는_결과중_FAIL_이_존재하지_않는_경우_VICTORY_를_반환() {
+        BridgeGameResult bridgeGameResult = new BridgeGameResult();
+        bridgeGameResult.add(Round.valueOf(1), ABLE, UP);
+        bridgeGameResult.add(Round.valueOf(2), ABLE, UP);
+
+        assertThat(bridgeGameResult.checkPassed()).isEqualTo(Victory.VICTORY);
+    }
+
+    @Test
+    void checkPassed_메서드는_결과중_FAIL_이_존재한_경우_VICTORY_를_반환() {
         BridgeGameResult bridgeGameResult = new BridgeGameResult();
         bridgeGameResult.add(Round.valueOf(1), ABLE, UP);
         bridgeGameResult.add(Round.valueOf(2), ABLE, UP);
         bridgeGameResult.add(Round.valueOf(3), UNABLE, UP);
 
-        assertThat(bridgeGameResult.isPassed()).isEqualTo(Victory.DEFEAT);
+        assertThat(bridgeGameResult.checkPassed()).isEqualTo(Victory.DEFEAT);
     }
 }
