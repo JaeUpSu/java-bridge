@@ -30,6 +30,10 @@ public class Player {
         gamePlayCount.add();
     }
 
+    public Victory checkGamePassed() {
+        return bridgeGameResult.checkPassed();
+    }
+
     public List<List<MoveStatus>> getBridgeGameResult() {
         return bridgeGameResult.getResult();
     }

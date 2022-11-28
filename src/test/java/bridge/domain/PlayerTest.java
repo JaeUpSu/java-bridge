@@ -49,4 +49,13 @@ public class PlayerTest {
         verify(bridgeGame, only()).move(any(Round.class), eq(Direction.UP));
         verify(bridgeGameResult, only()).add(any(Round.class), any(MoveStatus.class), any(Direction.class));
     }
+
+    @Test
+    void checkGamePassed_메서드는_BridgeGameResult_의_checkPassed_를_호출() {
+        BridgeGameResult bridgeGameResult = mock(BridgeGameResult.class);
+        Player player = new Player(GamePlayCount.firstGame(), Round.firstRound(), bridgeGameResult);
+
+        player.checkGamePassed();
+        verify(bridgeGameResult, only()).checkPassed();
+    }
 }
