@@ -58,4 +58,14 @@ public class PlayerTest {
         player.checkGamePassed();
         verify(bridgeGameResult, only()).checkPassed();
     }
+
+    @Test
+    void getGamePlayCount_메서드는_GamePlayCount_의_get_호출() {
+        GamePlayCount gamePlayCount = mock(GamePlayCount.class);
+        Player player = new Player(gamePlayCount, Round.firstRound(), new BridgeGameResult());
+
+        player.getGamePlayCount();
+
+        verify(gamePlayCount, only()).get();
+    }
 }

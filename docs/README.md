@@ -96,6 +96,7 @@
   - [x] move -> 다리 건너기
   - [x] reset -> 해당 게임 리셋
   - [x] getGameResult -> 게임 결과 확인
+  - [x] getGamePlayCount -> 게임 실행 횟수 반환
   - [x] checkGamePassed -> 다리 건너기 성공 유무 확인
 - [x] BridgeGame 다리 건너기 게임을 관리하는 Class
   - [x] move -> 움직이는 방향에 대한 결과 확인
