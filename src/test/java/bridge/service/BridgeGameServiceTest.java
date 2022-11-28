@@ -2,17 +2,14 @@ package bridge.service;
 
 import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
-import bridge.BridgeRandomNumberGenerator;
 import bridge.domain.MoveStatus;
 import bridge.domain.Player;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -64,18 +61,18 @@ public class BridgeGameServiceTest {
     @CsvSource({"R, true", "Q, false"})
     void retry_메서드는_command_를_입력받아_게임을_재시작_설정을_한다(String command, boolean result) {
         bridgeGameService.initializeBridgeGame(3);
-        bridgeGameService.play(new Player(), "U");
+        Player player = new Player();
+        bridgeGameService.play(player, "U");
 
-        bridgeGameService.retry(command);
+        bridgeGameService.retry(player, command);
 
         assertThat(bridgeGameService.isPlayable()).isEqualTo(result);
     }
 
     @Test
-    void retry_메서드는_다리가_준비되지_않은경우_IllegalStateException을_던진다() {
-        assertThatThrownBy(() -> bridgeGameService.retry("R"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("게임을 진행할 수 없습니다.");
+    void retry_메서드는_다리가_준비되지_않은경우_재시작하지_않고_그대로_반환() {
+        bridgeGameService.retry(new Player(), "R");
+        assertThat(bridgeGameService.isPlayable()).isFalse();
     }
 
     static class TestBridgeNumberGenerator implements BridgeNumberGenerator {

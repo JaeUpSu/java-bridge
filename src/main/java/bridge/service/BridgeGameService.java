@@ -33,22 +33,26 @@ public class BridgeGameService {
     }
 
     public boolean isPlayable() {
-        if (!isInitialized()) {
+        if (isNotInitialized()) {
             return false;
         }
         return bridgeGame.isPlayable();
     }
 
-    private boolean isInitialized() {
-        return !Objects.isNull(bridgeGame);
+    private boolean isNotInitialized() {
+        return Objects.isNull(bridgeGame);
     }
 
-    public void retry(String command) {
-        if (!isInitialized()) {
-            throw new IllegalArgumentException(INVALID_GAME_STATE_MESSAGE);
+    private boolean isNotContinuous(String command) {
+        BridgeGameStatus bridgeGameStatus = BridgeGameStatus.getEnum(command);
+        return bridgeGameStatus.isNotPlayable();
+    }
+
+    public void retry(Player player, String command) {
+        if (isNotInitialized() || isNotContinuous(command)) {
+            return;
         }
-        if (BridgeGameStatus.getEnum(command).isPlayable()) {
-            bridgeGame.retry();
-        }
+        bridgeGame.retry();
+        player.reset();
     }
 }
