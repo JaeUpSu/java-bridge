@@ -4,7 +4,9 @@ import bridge.BridgeMaker;
 import bridge.BridgeNumberGenerator;
 import bridge.domain.MoveStatus;
 import bridge.domain.Player;
+import bridge.domain.Victory;
 import bridge.dto.GameMoveDto;
+import bridge.dto.GameResultDto;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,6 +28,23 @@ public class BridgeGameServiceTest {
     @BeforeEach
     void setup() {
         bridgeGameService = new BridgeGameService(bridgeMaker);
+    }
+
+
+
+    @Test
+    void gameOver_메서드는_사용자를_입력받아_GameResultDto를_반환한다() {
+        bridgeGameService.initializeBridgeGame(3);
+        Player player = new Player();
+        bridgeGameService.play(player, "D");
+        bridgeGameService.play(player, "D");
+        bridgeGameService.play(player, "U");
+
+        GameResultDto gameResultDto = bridgeGameService.gameOver(player);
+
+        assertThat(gameResultDto.getCount()).isEqualTo(1);
+        assertThat(gameResultDto.getVictory()).isEqualTo(Victory.VICTORY);
+        assertThat(gameResultDto.getResult()).isInstanceOf(GameMoveDto.class);
     }
 
     @Test

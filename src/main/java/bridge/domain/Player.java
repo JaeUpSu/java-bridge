@@ -1,6 +1,6 @@
 package bridge.domain;
 
-import java.util.List;
+import bridge.dto.GameMoveDto;
 
 public class Player {
 
@@ -38,7 +38,7 @@ public class Player {
         return gamePlayCount.get();
     }
 
-    public List<List<MoveStatus>> getBridgeGameResult() {
+    public GameMoveDto getBridgeGameResult() {
         return bridgeGameResult.getResult();
     }
 }
