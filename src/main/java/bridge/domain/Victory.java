@@ -21,4 +21,8 @@ public enum Victory {
     public String getResult() {
         return result;
     }
+
+    public boolean isVictory() {
+        return this == VICTORY;
+    }
 }

@@ -114,7 +114,7 @@
 - [x] Victory 다리건너기 게임 최종 결과를 표현하는 enum
   - getEnum -> 실패 갯수를 입력받아 enum 반환
   - getResult -> Enum 에 따라 성공 또는 실패 문자열을 반환
-  
+  - isVictory -> 승리여부 반환
 
 ---
 
@@ -133,3 +133,4 @@
   - [x] validateBridgeSize -> 다리길이 검증
   - [x] validateMoving -> 이동방향 검증 
 - [x] GameMoveDto 움직임 결과
+- [x] GameResultDto 최종 결과
