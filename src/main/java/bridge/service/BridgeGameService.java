@@ -47,6 +47,8 @@ public class BridgeGameService {
         if (!isInitialized()) {
             throw new IllegalArgumentException(INVALID_GAME_STATE_MESSAGE);
         }
-        bridgeGame.retry(BridgeGameStatus.getEnum(command));
+        if (BridgeGameStatus.getEnum(command).isPlayable()) {
+            bridgeGame.retry();
+        }
     }
 }
