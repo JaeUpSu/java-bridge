@@ -31,7 +31,7 @@ public class BridgeGameService {
         }
 
         player.move(bridgeGame, Direction.toEnum(move));
-        return player.getBridgeGameResult();
+        return new GameMoveDto(player.getBridgeGameResult());
     }
 
     public boolean isPlayable() {
