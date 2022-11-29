@@ -30,15 +30,17 @@ public class BridgeGameServiceTest {
         bridgeGameService = new BridgeGameService(bridgeMaker);
     }
 
-
+    private void play(Player player, List<String> commands) {
+        for (String command : commands) {
+            bridgeGameService.play(player, command);
+        }
+    }
 
     @Test
     void gameOver_메서드는_사용자를_입력받아_GameResultDto를_반환한다() {
         bridgeGameService.initializeBridgeGame(3);
         Player player = new Player();
-        bridgeGameService.play(player, "D");
-        bridgeGameService.play(player, "D");
-        bridgeGameService.play(player, "U");
+        play(player, List.of("D", "D", "U"));
 
         GameResultDto gameResultDto = bridgeGameService.gameOver(player);
 
