@@ -8,15 +8,13 @@ import java.util.stream.Collectors;
 
 public class BridgeGameResult {
 
-    private final Map<Round, MoveStatus> result = new HashMap<>();
-    private final Map<Round, Direction> moves = new HashMap<>();
+    private final Map<Round, PlayerMove> result = new HashMap<>();
 
     public BridgeGameResult() {
     }
 
-    public void add(Round round, MoveStatus status, Direction direction) {
-        result.put(round, status);
-        moves.put(round, direction);
+    public void add(Round round, PlayerMove playerMove) {
+        result.put(round, playerMove);
     }
 
     public void reset() {
@@ -40,17 +38,17 @@ public class BridgeGameResult {
     }
 
     private MoveStatus checkRound(Round round, Direction direction) {
-        Direction moveDirection = moves.get(round);
-        if (moveDirection != direction) {
+        PlayerMove playerMove = result.get(round);
+        if (playerMove.isNotSameDirection(direction)) {
             return MoveStatus.NOT_MOVE;
         }
-        return result.get(round);
+        return playerMove.getMoveStatus();
     }
 
     public Victory checkPassed() {
         long failCount = Round.orderWithSize(result.size()).stream()
                 .map(result::get)
-                .filter(MoveStatus::isFail)
+                .filter(PlayerMove::isFail)
                 .count();
 
         return Victory.getEnum(failCount);
