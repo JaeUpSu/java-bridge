@@ -18,15 +18,13 @@ public class BridgeGameStatusTest {
     @ParameterizedTest
     @CsvSource({"PLAY, true", "QUIT, false"})
     void isPlayable_메서드는_게임의_진행가능여부를_반환(BridgeGameStatus bridgeGameStatus, boolean result) {
-        boolean playable = bridgeGameStatus.isPlayable();
-        assertThat(playable).isEqualTo(result);
+        assertThat(bridgeGameStatus.isPlayable()).isEqualTo(result);
     }
 
     @ParameterizedTest
     @CsvSource({"PLAY, false", "QUIT, true"})
     void isNotPlayable_메서드는_게임의_불가능여부를_반환(BridgeGameStatus bridgeGameStatus, boolean result) {
-        boolean playable = bridgeGameStatus.isNotPlayable();
-        assertThat(playable).isEqualTo(result);
+        assertThat(bridgeGameStatus.isNotPlayable()).isEqualTo(result);
     }
 
     @Test
