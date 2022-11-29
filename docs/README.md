@@ -88,7 +88,8 @@
   - [x] orderWithSize -> size 까지의 Round 를 오름차순으로 반환
 - [x] Direction 위 아래 방향을 표현하는 Enum
   - [x] toInitialLetter : 0과 1사이의 값을 받아 D와 U중 하나로 반환
-  - [x] toEnum : U와 D중 하나를 받아 해당하는 Direction 인스턴스 반환 
+  - [x] toEnum : U와 D중 하나를 받아 해당하는 Direction 인스턴스 반환
+  - [x] isNotSameDirection : 다른방향인지 확인
 - [x] Bridge 다리를 표현하는 모델 Class
   - [x] check -> 라운드와 방향을 입력받아 MoveResult 반환 
   - [x] isLastRound -> 마지막 라운드인지 확인

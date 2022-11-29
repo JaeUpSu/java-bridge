@@ -1,7 +1,6 @@
 package bridge.domain;
 
-import static bridge.domain.Direction.toEnum;
-import static bridge.domain.Direction.toInitialLetter;
+import static bridge.domain.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -48,4 +47,9 @@ public class DirectionTest {
         assertThat(toEnum(letter)).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @CsvSource({"UP, false", "DOWN, true"})
+    void isNotSameDirection_메서드는_다른_방향인지_부울형_값_반환(Direction direction, boolean expected) {
+        assertThat(UP.isNotSameDirection(direction)).isEqualTo(expected);
+    }
 }
