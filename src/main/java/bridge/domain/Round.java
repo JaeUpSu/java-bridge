@@ -53,8 +53,7 @@ public class Round {
     }
 
     public Round nextRound() {
-        validate(number + DIFFERENCE_ROUND);
-        return CACHE.get(number + DIFFERENCE_ROUND);
+        return CACHE.getOrDefault(number + DIFFERENCE_ROUND, this);
     }
 
     public static Round firstRound() {
