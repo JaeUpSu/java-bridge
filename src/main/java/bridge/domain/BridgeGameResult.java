@@ -3,7 +3,6 @@ package bridge.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class BridgeGameResult {
@@ -33,11 +32,11 @@ public class BridgeGameResult {
         // map result 객체를 list 의 get 적용
         // filter => Object::notNull,  null 만 아니라면 collect
         return Round.orderWithSize(result.size()).stream()
-                .map(round -> checkRound(round, direction))
+                .map(round -> getMoveResult(round, direction))
                 .collect(Collectors.toList());
     }
 
-    private MoveStatus checkRound(Round round, Direction direction) {
+    private MoveStatus getMoveResult(Round round, Direction direction) {
         PlayerMove playerMove = result.get(round);
         if (playerMove.isNotSameDirection(direction)) {
             return MoveStatus.NOT_MOVE;
