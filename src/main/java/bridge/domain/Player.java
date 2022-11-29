@@ -20,7 +20,7 @@ public class Player {
 
     public void move(BridgeGame bridgeGame, Direction direction) {
         MoveStatus status = bridgeGame.move(round, direction);
-        bridgeGameResult.add(round, new PlayerMove(status, direction));
+        bridgeGameResult.add(round, PlayerMove.getEnum(status, direction));
         round.nextRound();
     }
 
