@@ -9,8 +9,8 @@ import java.util.stream.IntStream;
 
 public class Round {
 
-    public static final int MINIMUM_ROUND = 1;
-    public static final int MAXIMUM_ROUND = 20;
+    private static final int MINIMUM_ROUND = 1;
+    private static final int MAXIMUM_ROUND = 20;
     public static final int DIFFERENCE_ROUND = 1;
 
     private static final Map<Integer, Round> CACHE = new HashMap<>();

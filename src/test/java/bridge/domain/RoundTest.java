@@ -1,7 +1,5 @@
 package bridge.domain;
 
-import static bridge.domain.Round.MAXIMUM_ROUND;
-import static bridge.domain.Round.MINIMUM_ROUND;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -25,7 +23,7 @@ public class RoundTest {
     // mapToObj(Class::Method) => 요소 하나하나 클래스 내의 메서드 적용
 
     @ParameterizedTest
-    @ValueSource(ints = {MINIMUM_ROUND - 1, MAXIMUM_ROUND + 1, -1, 1000})
+    @ValueSource(ints = {0, 21, -1, 1000})
     void valueOf_메서드는_범위를_벗어난_값을_입력받으면_예외처리_한다(int round) {
         Assertions.assertThatThrownBy(() -> Round.valueOf(round))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -33,7 +31,7 @@ public class RoundTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {MINIMUM_ROUND, 10, MAXIMUM_ROUND})
+    @ValueSource(ints = {1, 10, 20})
     void valueOf_메서드는_범위내의_값을_입력받으면_정상처리_한다(int round) {
         Round result = Round.valueOf(round);
         assertThat(result).isInstanceOf(Round.class);
@@ -55,7 +53,7 @@ public class RoundTest {
 
     @Test
     void order_메서드는_Round_오름차순하여_반환() {
-        List<Round> rounds = IntStream.rangeClosed(MINIMUM_ROUND, MAXIMUM_ROUND)
+        List<Round> rounds = IntStream.rangeClosed(1, 20)
                 .mapToObj(Round::valueOf)
                 .collect(Collectors.toList());
 
@@ -64,7 +62,7 @@ public class RoundTest {
 
     @Test
     void orderWithSize_메서드는_size_만큼_Round_오름차순하여_반환() {
-        List<Round> rounds = IntStream.rangeClosed(MINIMUM_ROUND, 5)
+        List<Round> rounds = IntStream.rangeClosed(1, 5)
                 .mapToObj(Round::valueOf)
                 .collect(Collectors.toList());
 
