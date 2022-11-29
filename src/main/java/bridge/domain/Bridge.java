@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static bridge.domain.MoveStatus.*;
 import static java.util.stream.Collectors.toMap;
 
 public class Bridge {
@@ -29,10 +30,12 @@ public class Bridge {
     public MoveStatus check(Round round, Direction direction) {
         validateRound(round);
 
-        if (bridge.get(round) == direction) {
-            return MoveStatus.ABLE;
+        Direction validDirection = bridge.get(round);
+        if (validDirection.isNotSameDirection(direction)) {
+            return UNABLE;
         }
-        return MoveStatus.UNABLE;
+
+        return ABLE;
     }
 
     private void validateRound(Round round) {
