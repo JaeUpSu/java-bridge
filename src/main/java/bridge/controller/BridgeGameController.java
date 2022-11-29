@@ -1,13 +1,14 @@
 package bridge.controller;
 
-import bridge.domain.MoveStatus;
 import bridge.domain.Player;
+import bridge.domain.Victory;
 import bridge.dto.GameMoveDto;
+import bridge.dto.GameResultDto;
 import bridge.service.BridgeGameService;
 import bridge.view.InputView;
 import bridge.view.OutputView;
 
-import java.util.List;
+import java.util.function.Supplier;
 
 public class BridgeGameController {
 
@@ -20,48 +21,56 @@ public class BridgeGameController {
     }
 
     public void run() {
-        outputView.printGameStart();
-        int size = readBridgeSize();
-        bridgeGameService.initializeBridgeGame(size);
+        initializeBridge();
+        Player player = crossBridge(new Player());
+        printGameResult(player);
+    }
 
-        Player player = new Player();
+    private void printGameResult(Player player) {
+        GameResultDto gameResultDto = bridgeGameService.gameOver(player);
+        outputView.printResult(gameResultDto);
+    }
 
+    private Player crossBridge(Player player) {
         while (bridgeGameService.isPlayable()) {
-            String move = readMoving();
-            GameMoveDto gameMoveDto = bridgeGameService.play(player, move);
-            outputView.printMap(gameMoveDto);
-
-            if (!bridgeGameService.isPlayable()) {
-                String command = readGameCommand();
-                bridgeGameService.retry(player, command);
-            }
+            playerMove(player);
+            checkRetry(player);
         }
+        return player;
     }
 
-    private String readGameCommand() {
+    private void checkRetry(Player player) {
+        if (isGameOver(player) || bridgeGameService.isPlayable()) {
+            return;
+        }
+        String command = repeat(inputView::readGameCommand);
+        bridgeGameService.retry(player, command);
+    }
+
+    private <T> T repeat(Supplier<T> inputReader) {
         try {
-            return inputView.readGameCommand();
+            return inputReader.get();
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return readGameCommand();
+            return repeat(inputReader);
         }
     }
 
-    private int readBridgeSize() {
-        try {
-            return inputView.readBridgeSize();
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readBridgeSize();
-        }
+    private boolean isGameOver(Player player) {
+        Victory result = player.checkGamePassed();
+        return !bridgeGameService.isPlayable() && result.isVictory();
     }
 
-    private String readMoving() {
-        try {
-            return inputView.readMoving();
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return readMoving();
-        }
+    private void playerMove(Player player) {
+        String move = repeat(inputView::readMoving);
+        GameMoveDto gameMoveDto = bridgeGameService.play(player, move);
+        outputView.printMap(gameMoveDto);
     }
+
+    private void initializeBridge() {
+        outputView.printGameStart();
+        int size = repeat(inputView::readBridgeSize);
+        bridgeGameService.initializeBridgeGame(size);
+    }
+
 }
