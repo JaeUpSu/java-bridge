@@ -29,7 +29,7 @@ public class BridgeMaker {
         // collect 으로 리스트형태로 반환
         return Stream.generate(bridgeNumberGenerator::generate)
                 .limit(size)
-                .map(Direction::toInitialLetter)
+                .map(Direction::toCommand)
                 .collect(Collectors.toList());
     }
 }

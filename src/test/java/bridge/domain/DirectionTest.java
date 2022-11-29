@@ -21,16 +21,16 @@ public class DirectionTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 2, 3})
-    void toInitialLetter_메서드는_범위_외의_값을_입력받는_경우_예외처리(Integer code) {
-        assertThatThrownBy(() -> toInitialLetter(code))
+    void toCommand_메서드는_범위_외의_값을_입력받는_경우_예외처리(Integer code) {
+        assertThatThrownBy(() -> toCommand(code))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("0과 1사이의 값을 입력해주세요.");
     }
 
     @ParameterizedTest
     @CsvSource({"1, U", "0, D"})
-    void toInitialLetter_메서드는_0과_1사이의_값을_받아_방향에_대한_머리글자를_반환(Integer code, String expected) {
-        assertThat(toInitialLetter(code)).isEqualTo(expected);
+    void toCommand_메서드는_0과_1사이의_값을_받아_방향에_대한_머리글자를_반환(Integer code, String expected) {
+        assertThat(toCommand(code)).isEqualTo(expected);
     }
 
     @ParameterizedTest

@@ -9,26 +9,26 @@ public enum Direction {
     private static final String INVALID_CODE_RANGE_MESSAGE = "0과 1사이의 값을 입력해주세요.";
     private static final String INVALID_INITIAL_LETTER_MESSAGE = "U와 D 중 하나의 값을 입력해주세요.";
 
-    private final Integer directionCode;
-    private final String initialLetter;
+    private final Integer code;
+    private final String command;
 
-    Direction(Integer directionCode, String initialLetter) {
-        this.directionCode = directionCode;
-        this.initialLetter = initialLetter;
+    Direction(Integer code, String command) {
+        this.code = code;
+        this.command = command;
     }
 
-    public static String toInitialLetter(Integer directionCode) {
-        return Arrays.stream(Direction.values())
-                .filter(direction -> direction.directionCode.equals(directionCode))
-                .findAny()
+    public static String toCommand(Integer code) {
+        return Arrays.stream(values())
+                .filter(direction -> direction.code.equals(code))
+                .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_CODE_RANGE_MESSAGE))
-                .initialLetter;
+                .command;
     }
 
-    public static Direction toEnum(String initialLetter) {
-        return Arrays.stream(Direction.values())
-                .filter(direction -> direction.initialLetter.equals(initialLetter))
-                .findAny()
+    public static Direction toEnum(String command) {
+        return Arrays.stream(values())
+                .filter(direction -> direction.command.equals(command))
+                .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_INITIAL_LETTER_MESSAGE));
     }
 
