@@ -40,7 +40,7 @@ public class BridgeGameController {
     }
 
     private void checkRetry(Player player) {
-        if (isGameOver(player) || bridgeGameService.isPlayable()) {
+        if (bridgeGameService.isGameOver(player) || bridgeGameService.isPlayable()) {
             return;
         }
         String command = repeat(inputView::readGameCommand);
@@ -54,11 +54,6 @@ public class BridgeGameController {
             outputView.printError(e.getMessage());
             return repeat(inputReader);
         }
-    }
-
-    private boolean isGameOver(Player player) {
-        Victory result = player.checkGamePassed();
-        return !bridgeGameService.isPlayable() && result.isVictory();
     }
 
     private void playerMove(Player player) {

@@ -55,6 +55,11 @@ public class BridgeGameService {
         return new GameResultDto(player.checkGamePassed(), gameMoveDto, player.getGamePlayCount());
     }
 
+    public boolean isGameOver(Player player) {
+        Victory result = player.checkGamePassed();
+        return !isPlayable() && result.isVictory();
+    }
+
     public void retry(Player player, String command) {
         if (isNotInitialized() || isNotContinuous(command)) {
             return;
