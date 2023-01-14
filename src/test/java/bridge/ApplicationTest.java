@@ -6,7 +6,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -26,17 +28,49 @@ class ApplicationTest extends NsTest {
         assertRandomNumberInRangeTest(() -> {
             run("3", "U", "D", "U");
             assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 1"
             );
 
             int upSideIndex = output().indexOf("[ O |   | O ]");
             int downSideIndex = output().indexOf("[   | O |   ]");
             assertThat(upSideIndex).isLessThan(downSideIndex);
         }, 1, 0, 1);
+    }
+
+    @Test
+    void 기능_20라운드_테스트() {
+        assertRandomNumberInRangeTest(() -> {
+            run("20", "D", "R", "U", "U", "R",
+                    "U", "D", "U", "D", "D",
+                    "D", "U", "U", "U", "D",
+                    "D", "D", "U", "U", "U",
+                    "D", "D", "D", "D", "D");
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O |   |   |   | O | O | O |   |   |   | O | O | O |   |   |   |   |   ]",
+                    "[   | O |   | O | O | O |   |   |   | O | O | O |   |   |   | O | O | O | O | O ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 3"
+            );
+
+            int upSideIndex = output().indexOf(
+                    "[ O |   | O |   |   |   | O | O | O |   |   |   | O | O | O |   |   |   |   |   ]");
+            int downSideIndex = output().indexOf(
+                    "[   | O |   | O | O | O |   |   |   | O | O | O |   |   |   | O | O | O | O | O ]");
+            assertThat(upSideIndex).isLessThan(downSideIndex);
+        }, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0);
+    }
+
+    @Test
+    void 예외_테스트_라운드_범위를_벗어남() {
+        assertSimpleTest(() -> {
+            runException("21");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
